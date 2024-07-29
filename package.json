@@ -1,0 +1,40 @@
+{
+  "name": "@selfage/loop",
+  "version": "1.0.0",
+  "description": "Continuously looping in time.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/selfage/loop.git"
+  },
+  "keywords": [
+    "Loop",
+    "Recurring",
+    "Blocking",
+    "Async",
+    "Interval",
+    "Timeout",
+    "AnimationFrame"
+  ],
+  "author": "Yuxuan Xie <teststaybaka@gmail.com> (http://www.yuxuanxie.com)",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/selfage/loop/issues"
+  },
+  "homepage": "https://github.com/selfage/loop#readme",
+  "main": "./loop.js",
+  "types": "./loop.d.ts",
+  "files": [
+    "**/*.js",
+    "**/*.d.ts",
+    "!**/*_test.*",
+    "!test_data/**/*"
+  ],
+  "devDependencies": {
+    "@selfage/bundler_cli": "^5.1.5",
+    "@selfage/cli": "^5.0.0",
+    "@selfage/puppeteer_test_runner": "^1.1.0",
+    "@selfage/test_matcher": "^2.0.0",
+    "@selfage/tsconfig": "^1.0.7",
+    "typescript": "^5.4.5"
+  }
+}
