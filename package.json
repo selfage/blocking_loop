@@ -1,5 +1,5 @@
 {
-  "name": "@selfage/loop",
+  "name": "@selfage/blocking_loop",
   "version": "1.0.0",
   "description": "Continuously looping in time.",
   "repository": {
@@ -18,11 +18,11 @@
   "author": "Yuxuan Xie <teststaybaka@gmail.com> (http://www.yuxuanxie.com)",
   "license": "GPL-3.0-or-later",
   "bugs": {
-    "url": "https://github.com/selfage/loop/issues"
+    "url": "https://github.com/selfage/blocking_loop/issues"
   },
-  "homepage": "https://github.com/selfage/loop#readme",
-  "main": "./loop.js",
-  "types": "./loop.d.ts",
+  "homepage": "https://github.com/selfage/blocking_loop#readme",
+  "main": "./blocking_loop.js",
+  "types": "./blocking_loop.d.ts",
   "files": [
     "**/*.js",
     "**/*.d.ts",

@@ -10,7 +10,7 @@ export class BlockingLoop {
 
   private schedule: (callback: () => void) => number;
   private cancelSchedule: (id: number) => void;
-  private action: () => Promise<void>;
+  protected action: () => Promise<void>;
   private intervalMs: number;
   private loopId: number;
 
