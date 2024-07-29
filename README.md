@@ -13,7 +13,7 @@ Note that global `window` object is required. I.e. only run in a browser.
 ## Usage
 
 ```TypeScript
-import { BlockingLoop, Style } from "@selfage/loop";
+import { BlockingLoop, Style } from "@selfage/blocking_loop";
 
 // Style.TIMEOUT uses setTimeout function to schedule loops.
 // Style.ANIMATION_FRAME uses requestAnimationFrame to schedule loops.
