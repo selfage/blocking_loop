@@ -10,7 +10,7 @@ TEST_RUNNER.run({
   name: "BlockingLoopTest",
   cases: [
     {
-      name: "AnimationFrame_StartLoop_RunOnce_RunAndStop_FinishedWithNoMoreLoops",
+      name: "Start_RunOnce_RuAndStopWhielWaiting_RestartAndStopWhileRunningAction",
       execute: async () => {
         // Prepare
         let interval = 500;
@@ -49,21 +49,19 @@ TEST_RUNNER.run({
         loopFn();
 
         // Verify
-        assertThat(loopId, eq(1), "still 1st loop");
-
-        // Execute
-        actionResolveFn();
-
-        // Verify
-        await advanceOneFrame();
         assertThat(msCaptured, eq(interval), "waiting time");
 
         // Execute
         waitingResolveFn();
+        await advanceOneFrame();
+        actionResolveFn();
+        await advanceOneFrame();
 
         // Verify
-        await advanceOneFrame();
         assertThat(loopId, eq(2), "2nd loop");
+
+        // Prepare
+        actionResolveFn = undefined;
 
         // Execute
         loopFn();
@@ -71,13 +69,34 @@ TEST_RUNNER.run({
 
         // Verify
         assertThat(loopIdCleared, eq(2), "clear 2nd loop");
-        actionResolveFn();
-        await advanceOneFrame();
-        // Resolve waiting promise
+
+        // Execute
         waitingResolveFn();
         await advanceOneFrame();
-        // 4 is from timeout used for waiting.
-        assertThat(loopId, eq(2), "no more timeout");
+
+        // Verify
+        assertThat(actionResolveFn, eq(undefined), "no more actions");
+        assertThat(loopId, eq(2), "still 2nd loop");
+
+        // Prepare
+        loop.start();
+        loopFn();
+        assertThat(loopId, eq(3), "3rd loop");
+        waitingResolveFn();
+        await advanceOneFrame();
+
+        // Execute
+        loop.stop();
+
+        // Verify
+        assertThat(loopIdCleared, eq(3), "clear 3rd loop");
+
+        // Execute
+        actionResolveFn();
+        await advanceOneFrame();
+
+        // Verify
+        assertThat(loopId, eq(3), "still 3rd loop");
       },
     },
   ],

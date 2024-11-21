@@ -20,7 +20,7 @@ let loop = BlockingLoop.createWithTimeout() // Can be used in either browser or 
   .setInterval(500);
 // or BlockingLoop.createWithAinmationFrame()
 
-// The first loop will start immediately.
+// The first action will be run after the interval.
 loop.start();
 
 // You can wait for the last running loop to be finished, and it won't schedule a new loop.

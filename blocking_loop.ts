@@ -43,9 +43,13 @@ export class BlockingLoop {
 
   private run = async (): Promise<void> => {
     let currentLoopId = this.loopId;
+    await new Promise<void>((resolve) => this.wait(resolve, this.intervalMs));
+    if (currentLoopId !== this.loopId) {
+      // Loop id changed. The current loop is cancelled. Don't run the action.
+      return;
+    }
     this.lastActionPromise = this.action();
     await this.lastActionPromise;
-    await new Promise<void>((resolve) => this.wait(resolve, this.intervalMs));
     if (currentLoopId !== this.loopId) {
       // Loop id changed. The current loop is cancelled. Don't schedule the next execution.
       return;
